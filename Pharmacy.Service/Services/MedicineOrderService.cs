@@ -18,7 +18,7 @@ namespace Pharmacy.Service.Services
         {
             this.unitOfWork = unitOfWork;
         }
-        public async ValueTask<MedicineOrder> CreateAsync(MedicineOrderCreationDTO medicineOrderCreationDTO)
+        public async ValueTask<MedicineOrder> CreateAsync(MedicineOrderForCreationDTO medicineOrderCreationDTO)
         {
 
             var MedicineOrder = await unitOfWork.MedicineOrders.CreateAsync(medicineOrderCreationDTO.Adapt<MedicineOrder>());
@@ -57,7 +57,7 @@ namespace Pharmacy.Service.Services
                 null) ?? throw new PharmacyException(404, "MedicineOrder not found");
         }
 
-        public async ValueTask<MedicineOrder> UpdateAsync(int id, MedicineOrderCreationDTO medicineOrderCreationDTO)
+        public async ValueTask<MedicineOrder> UpdateAsync(int id, MedicineOrderForCreationDTO medicineOrderCreationDTO)
         {
 
             var medicineOrder = await GetAsync(c => c.Id == id);

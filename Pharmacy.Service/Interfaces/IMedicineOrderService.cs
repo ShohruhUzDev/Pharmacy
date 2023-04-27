@@ -13,9 +13,9 @@ namespace Pharmacy.Service.Interfaces
 {
     public interface IMedicineOrderService
     {
-        ValueTask<MedicineOrder> CreateAsync(MedicineOrderCreationDTO medicineOrderCreationDTO);
+        ValueTask<MedicineOrder> CreateAsync(MedicineOrderForCreationDTO medicineOrderCreationDTO);
 
-        ValueTask<MedicineOrder> UpdateAsync(int id, MedicineOrderCreationDTO medicineOrderCreationDTO);
+        ValueTask<MedicineOrder> UpdateAsync(int id, MedicineOrderForCreationDTO medicineOrderCreationDTO);
 
         ValueTask<bool> DeleteAsync(Expression<Func<MedicineOrder, bool>> expression);
 
