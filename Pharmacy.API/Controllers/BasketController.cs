@@ -7,7 +7,7 @@ namespace Pharmacy.API.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class BasketController : ControllerBase
     {
 

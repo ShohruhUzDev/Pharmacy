@@ -6,7 +6,7 @@ using Pharmacy.Service.Interfaces;
 namespace Pharmacy.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService customerService;

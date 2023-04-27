@@ -10,7 +10,7 @@ using Pharmacy.Service.Interfaces;
 
 namespace Pharmacy.Api.Controllers
 {
-    [ApiController(), Route("[controller]")]
+    [ApiController(), Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserService userService;
