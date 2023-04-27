@@ -59,7 +59,6 @@ var githubPipline = new GithubPipeline
     }
 
 };
-
 var adotnetClient = new ADotNetClient();
 adotnetClient.SerializeAndWriteToFile(
     githubPipline,
