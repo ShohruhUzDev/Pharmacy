@@ -20,7 +20,31 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<PharmacyDbContext>(option =>
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AllPolicy", policy => policy.RequireRole(
+        Enum.GetName(UserRole.Admin),
+        Enum.GetName(UserRole.User)));
+
+    options.AddPolicy("UserPolicy", policy => policy.RequireRole(
+        Enum.GetName(UserRole.Admin),
+        Enum.GetName(UserRole.User)));
+
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole(
+        Enum.GetName(UserRole.Admin)));
+});
+
 builder.Services.AddEndpointsApiExplorer();
+
+
+builder.Services.ConfigureJwt(builder.Configuration);
+builder.Services.AddSwaggerService();
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddSwaggerGen();// Add custom services
 
 // unit if work
@@ -43,22 +67,7 @@ builder.Services.AddControllers(options =>
                                  new ConfigureApiUrlName()));
 });
 
-builder.Services.AddDbContext<PharmacyDbContext>(option =>
-    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AllPolicy", policy => policy.RequireRole(
-        Enum.GetName(UserRole.Admin),
-        Enum.GetName(UserRole.User)));
-
-    options.AddPolicy("UserPolicy", policy => policy.RequireRole(
-        Enum.GetName(UserRole.Admin),
-        Enum.GetName(UserRole.User)));
-
-    options.AddPolicy("AdminPolicy", policy => policy.RequireRole(
-        Enum.GetName(UserRole.Admin)));
-});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -69,9 +78,6 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
-//builder.Services.ConfigureJwt(builder.Configuration);
-//builder.Services.AddSwaggerService();
-//builder.Services.AddCustomServices();
 
 
 app.UseHttpsRedirection();
