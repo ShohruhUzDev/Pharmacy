@@ -42,6 +42,8 @@ namespace Pharmacy.Service.Services
             Expression<Func<Basket, bool>> expression = null)
         {
             var baskets = unitOfWork.Baskets.GetAll(expression);
+            baskets.Include(bas=>bas.MedicineOrders).ToList();
+
 
             if (@params != null)
                 return await baskets.ToPagedList(@params).Include(bas=>bas.MedicineOrders).ToListAsync();
