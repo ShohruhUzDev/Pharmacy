@@ -20,9 +20,9 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
 builder.Services.AddControllers();
-var connectionString= builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<PharmacyDbContext>(option =>
-    option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+    option.UseSqlite(builder.Configuration.GetConnectionString("SqlLiteConnection")));
 
 builder.Services.AddAuthorization(options =>
 {
