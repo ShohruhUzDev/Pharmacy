@@ -33,7 +33,7 @@ namespace Pharmacy.Api.Controllers
         public async ValueTask<IActionResult> ChangePasswordAsync(string oldPassword, string newPassword)
             => Ok(await userService.ChangePasswordAsync(oldPassword, newPassword));
 
-        [HttpGet, Authorize(Roles = CustomRoles.ADMIN_ROLE)]
+        [HttpGet]
         public async ValueTask<IActionResult> GetAll([FromQuery] PaginationParams @params)
             => Ok(await userService.GetAllAsync(@params));
 
