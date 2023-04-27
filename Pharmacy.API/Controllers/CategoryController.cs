@@ -37,8 +37,8 @@ namespace Pharmacy.API.Controllers
         }
 
         [HttpDelete("{Id}")]
-        public async ValueTask<IActionResult> DeleteAsync([FromRoute] int id)
-            => Ok(await categoryService.DeleteAsync(c => c.Id == id));
+        public async ValueTask<IActionResult> DeleteAsync( int Id)
+            => Ok(await categoryService.DeleteAsync(c => c.Id == Id));
 
         [HttpPut("{id}")]
         public async ValueTask<IActionResult> UpdateAsync(

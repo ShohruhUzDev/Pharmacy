@@ -23,12 +23,11 @@ namespace Pharmacy.Service.Services
 
         public async ValueTask<Order> CreateAsync(OrdersForCreationDTO orderForCreationDTO)
         {
-            orderForCreationDTO.UserId = HttpContextHelper.UserId ?? throw new PharmacyException(404, "User not found");
+          
+            //var Medicine = await unitOfWork.Orders.GetAsync(u => u.Id == orderForCreationDTO.PharmacyId);
 
-            var Medicine = await unitOfWork.Medicines.GetAsync(u => u.Id == orderForCreationDTO.PharmacyId);
-
-            if (Medicine is null)
-                throw new PharmacyException(404, "Pharmacy not found");
+            //if (Medicine is null)
+            //    throw new PharmacyException(404, "Pharmacy not found");
 
             var order = await unitOfWork.Orders.CreateAsync(orderForCreationDTO.Adapt<Order>());
             await unitOfWork.SaveChangesAsync();
@@ -62,12 +61,12 @@ namespace Pharmacy.Service.Services
         {
             var order = await GetAsync(o => o.Id == id);
 
-            orderForCreationDTO.UserId = HttpContextHelper.UserId ?? throw new PharmacyException(404, "User not found");
+            orderForCreationDTO.CustomerId = HttpContextHelper.UserId ?? throw new PharmacyException(404, "User not found");
 
-            var Medicine = await unitOfWork.Medicines.GetAsync(u => u.Id == orderForCreationDTO.PharmacyId);
+            var Customer = await unitOfWork.Customers.GetAsync(u => u.Id == orderForCreationDTO.CustomerId);
 
-            if (Medicine is null)
-                throw new PharmacyException(404, "Medicine not found");
+            if (Customer is null)
+                throw new PharmacyException(404, "Customer not found");
 
             order.UpdatedAt = DateTime.UtcNow;
 

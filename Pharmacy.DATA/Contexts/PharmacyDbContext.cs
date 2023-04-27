@@ -17,6 +17,7 @@ namespace Pharmacy.Data.Contexts
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Medicine> Medicines { get; set; }
+        public virtual DbSet<MedicineOrder> MedicineOrders { get; set; }
         public virtual DbSet<Basket> Baskets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

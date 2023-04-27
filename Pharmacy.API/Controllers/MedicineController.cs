@@ -49,11 +49,11 @@ namespace Pharmacy.Api.Controllers
         [HttpPut("{id}")]
         public async ValueTask<IActionResult> UpdateAsync(
             [FromRoute] int id,
-            [FromQuery] MedicineForCreationDTO coffeeForCreationDTO
+            [FromQuery] MedicineForCreationDTO medicineForCreationDTO
           )
         {
 
-            return Ok(await medicineService.UpdateAsync(id, coffeeForCreationDTO));
+            return Ok(await medicineService.UpdateAsync(id, medicineForCreationDTO));
         }
     }
 }
