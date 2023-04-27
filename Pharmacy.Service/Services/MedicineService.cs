@@ -46,7 +46,7 @@ namespace Pharmacy.Service.Services
 
         public async ValueTask<IEnumerable<Medicine>> GetAllAsync(PaginationParams @params = null, Expression<Func<Medicine, bool>> expression = null)
         {
-            var Pharmacys = unitOfWork.Medicines.GetAll(expression, new string[] { "Attachment" }, false);
+            var Pharmacys = unitOfWork.Medicines.GetAll(expression,null, false);
 
             if (@params != null)
                 return await Pharmacys.ToPagedList(@params).ToListAsync();
@@ -55,7 +55,7 @@ namespace Pharmacy.Service.Services
         }
 
         public async ValueTask<Medicine> GetAsync(Expression<Func<Medicine, bool>> expression) =>
-            await unitOfWork.Medicines.GetAsync(expression, new string[] { "Attachment" }) ?? throw new PharmacyException(404, "Pharmacy not found");
+            await unitOfWork.Medicines.GetAsync(expression, null) ?? throw new PharmacyException(404, "Pharmacy not found");
 
         public async ValueTask<Medicine> UpdateAsync(int id, MedicineForCreationDTO PharmacyForCreationDTO)
         {

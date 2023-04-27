@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using System.Data;
-using System.Net.Mail;
-using Microsoft.AspNetCore.Mvc;
-using Pharmacy.Api.Helpers;
+﻿using Microsoft.AspNetCore.Mvc;
 using Pharmacy.Domain.Configurations;
-using Pharmacy.Service.Interfaces;
 using Pharmacy.Service.DTOs;
+using Pharmacy.Service.Interfaces;
 
 namespace Pharmacy.API.Controllers
 {
@@ -35,7 +31,7 @@ namespace Pharmacy.API.Controllers
             var categoryForCreationDTO = new CategoryForCreationDTO
             {
                 Content = cantent
-               };
+            };
 
             return Ok(await categoryService.CreateAsync(categoryForCreationDTO));
         }
@@ -50,7 +46,7 @@ namespace Pharmacy.API.Controllers
             [FromQuery] CategoryForCreationDTO categoryForCreationDTO
            )
         {
-         
+
             return Ok(await categoryService.UpdateAsync(id, categoryForCreationDTO));
         }
 

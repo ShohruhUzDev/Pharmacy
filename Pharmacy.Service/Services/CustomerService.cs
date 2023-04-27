@@ -1,17 +1,17 @@
-﻿using Mapster;
+﻿using System.Linq.Expressions;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Pharmacy.Data.IRepositories;
 using Pharmacy.Domain.Configurations;
 using Pharmacy.Domain.Entities.Customers;
-using Pharmacy.Domain.Entities.Orders;
 using Pharmacy.Service.DTOs;
 using Pharmacy.Service.Exceptions;
 using Pharmacy.Service.Extensions;
-using System.Linq.Expressions;
+using Pharmacy.Service.Interfaces;
 
 namespace Pharmacy.Service.Services
 {
-    public class CustomerService
+    public class CustomerService : ICustomerService
     {
         private readonly IUnitOfWork unitOfWork;
         public CustomerService(IUnitOfWork unitOfWork)
@@ -41,7 +41,7 @@ namespace Pharmacy.Service.Services
         public async ValueTask<IEnumerable<Customer>> GetAllAsync(PaginationParams @params = null,
             Expression<Func<Customer, bool>> expression = null)
         {
-            var customers = unitOfWork.Customers.GetAll(expression, new string[] { "Attachment" }, false);
+            var customers = unitOfWork.Customers.GetAll(expression, null, false);
 
             if (@params != null)
                 return await customers.ToPagedList(@params).ToListAsync();
@@ -53,7 +53,7 @@ namespace Pharmacy.Service.Services
         public async ValueTask<Customer> GetAsync(Expression<Func<Customer, bool>> expression)
         {
             return await unitOfWork.Customers.GetAsync(expression,
-                    new string[] { "Attachment" }) ?? throw new PharmacyException(404, "Customer not found");
+                    null) ?? throw new PharmacyException(404, "Customer not found");
         }
 
         public async ValueTask<Customer> UpdateAsync(int id, CustomerForCreationDTO customerForCreationDTO)

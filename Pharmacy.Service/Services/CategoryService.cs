@@ -50,7 +50,7 @@ namespace Pharmacy.Service.Services
 
         public async ValueTask<IEnumerable<Category>> GetAllAsync(PaginationParams @params = null, Expression<Func<Category, bool>> expression = null)
         {
-            var coffees = unitOfWork.Categories.GetAll(expression, new string[] { "Attachment" }, false);
+            var coffees = unitOfWork.Categories.GetAll(expression, null, false);
 
             if (@params != null)
                 return await coffees.ToPagedList(@params).ToListAsync();
@@ -61,7 +61,7 @@ namespace Pharmacy.Service.Services
 
         public async ValueTask<Category> GetAsync(Expression<Func<Category, bool>> expression)
         {
-          return  await unitOfWork.Categories.GetAsync(expression, new string[] { "Attachment" }) ?? throw new PharmacyException(404, "Category not found");
+          return  await unitOfWork.Categories.GetAsync(expression, null) ?? throw new PharmacyException(404, "Category not found");
         }
 
         public async ValueTask<Category> UpdateAsync(int id, CategoryForCreationDTO categoryForCreationDTO)

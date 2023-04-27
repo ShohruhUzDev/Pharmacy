@@ -1,7 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Pharmacy.Domain.Configurations;
 using Pharmacy.Domain.Entities.Customers;
-using Pharmacy.Domain.Entities.Orders;
 using Pharmacy.Service.DTOs;
 
 namespace Pharmacy.Service.Interfaces

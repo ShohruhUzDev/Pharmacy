@@ -1,7 +1,4 @@
-﻿using Pharmacy.Domain.Entities.Orders;
-using Pharmacy.Entities.Medicines;
-
-namespace Pharmacy.Service.DTOs
+﻿namespace Pharmacy.Service.DTOs
 {
     public class MedicineOrderForCreationDTO
     {
