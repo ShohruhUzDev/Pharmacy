@@ -51,11 +51,11 @@ namespace Pharmacy.Service.Services
         public async ValueTask<IEnumerable<Category>> GetAllAsync(PaginationParams @params = null, Expression<Func<Category, bool>> expression = null)
         {
             var coffees = unitOfWork.Categories.GetAll(expression, null, false);
-
+           
             if (@params != null)
-                return await coffees.ToPagedList(@params).ToListAsync();
+                return await coffees.ToPagedList(@params).Include(cat=>cat.Medicines).ToListAsync();
 
-            return await coffees.ToListAsync();
+            return await coffees.Include(cat=>cat.Medicines).ToListAsync();
 
         }
 

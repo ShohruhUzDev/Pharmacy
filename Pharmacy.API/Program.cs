@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Pharmacy.Api.Extensions;
 using Pharmacy.Api.Helpers;
 using Pharmacy.Api.Middlewares;
@@ -13,6 +14,10 @@ using Pharmacy.Service.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

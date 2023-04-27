@@ -44,9 +44,9 @@ namespace Pharmacy.Service.Services
             var baskets = unitOfWork.Baskets.GetAll(expression);
 
             if (@params != null)
-                return await baskets.ToPagedList(@params).ToListAsync();
+                return await baskets.ToPagedList(@params).Include(bas=>bas.MedicineOrders).ToListAsync();
 
-            return await baskets.ToListAsync();
+            return await baskets.Include(bas=>bas.MedicineOrders).ToListAsync();
 
         }
 
