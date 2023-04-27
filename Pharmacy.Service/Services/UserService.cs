@@ -48,7 +48,7 @@ namespace Pharmacy.Service.Services
 
         public async ValueTask<IEnumerable<UserForViewDTO>> GetAllAsync(PaginationParams @params, Expression<Func<User, bool>> expression = null)
         {
-            var users = unitOfWork.Users.GetAll(expression: expression, isTracking: false, includes: new string[] { "Address" });
+            var users = unitOfWork.Users.GetAll(expression: expression,null,  false);
 
             return (await users.ToPagedList(@params).ToListAsync()).Adapt<List<UserForViewDTO>>();
         }
