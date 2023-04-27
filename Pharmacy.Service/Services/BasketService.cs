@@ -41,13 +41,13 @@ namespace Pharmacy.Service.Services
         public async ValueTask<IEnumerable<Basket>> GetAllAsync(PaginationParams @params = null,
             Expression<Func<Basket, bool>> expression = null)
         {
-            var baskets = unitOfWork.Baskets.GetAll(expression, null, false);
+            var baskets = unitOfWork.Baskets.GetAll(expression,null, false);
 
 
             if (@params != null)
-                return await baskets.ToPagedList(@params).Include(bas=>bas.MedicineOrders).ToListAsync();
+                return await baskets.ToPagedList(@params).ToListAsync();
 
-            return await baskets.Include(bas=>bas.MedicineOrders).ToListAsync();
+            return await baskets.ToListAsync();
 
         }
 
