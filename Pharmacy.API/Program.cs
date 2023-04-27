@@ -75,8 +75,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
-    app.UseSwagger();
-    app.UseSwaggerUI();
+
+app.UseSwagger();
+
+app.UseSwaggerUI(config => config.SwaggerEndpoint(
+    url: "/swagger/v1/swagger.json",
+    name: "Pharmacy.API v1"));
 
 //app.UseHttpsRedirection();
 
