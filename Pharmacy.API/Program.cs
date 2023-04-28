@@ -22,7 +22,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<PharmacyDbContext>(option =>
-    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    option.UseSqlite(builder.Configuration.GetConnectionString("SqlLiteConnection")));
 
 builder.Services.AddAuthorization(options =>
 {
