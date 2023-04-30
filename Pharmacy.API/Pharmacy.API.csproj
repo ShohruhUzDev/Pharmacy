@@ -26,4 +26,16 @@
     <ProjectReference Include="..\Pharmacy.Service\Pharmacy.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="App_Data\LocalDatabase.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="App_Data\LocalDatabase.db-shm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="App_Data\LocalDatabase.db-wal">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
