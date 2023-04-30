@@ -71,11 +71,11 @@ builder.Services.AddScoped<IMedicineOrderService, MedicineOrderService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-builder.Services.AddControllers(options =>
-{
-    options.Conventions.Add(actionModelConvention: new RouteTokenTransformerConvention(
-                                 new ConfigureApiUrlName()));
-});
+//builder.Services.AddControllers(options =>
+//{
+//    options.Conventions.Add(actionModelConvention: new RouteTokenTransformerConvention(
+//                                 new ConfigureApiUrlName()));
+//});
 
 
 var app = builder.Build();
@@ -93,7 +93,7 @@ app.UseSwaggerUI(config => config.SwaggerEndpoint(
     url: "/swagger/v1/swagger.json",
     name: "Pharmacy.API v1"));
 
-//app.UseHttpsRedirection();
+
 
 
 app.UseHttpsRedirection();
