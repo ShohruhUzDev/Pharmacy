@@ -21,6 +21,16 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("MyPolicy", config =>
+    {
+        config.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddDbContext<PharmacyDbContext>(option =>
     option.UseSqlite(builder.Configuration.GetConnectionString("SqlLiteConnection")));
 
@@ -76,6 +86,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseCors("MyPolicy");
 app.UseSwagger();
 
 app.UseSwaggerUI(config => config.SwaggerEndpoint(
