@@ -30,6 +30,7 @@ namespace Pharmacy.API.Controllers
         public async ValueTask<IActionResult> GetAsync([FromRoute] int id)
             => Ok(await basketService.GetAsync(c => c.Id == id));
 
+
         [HttpPost]
         public async ValueTask<IActionResult> CreateAsync(BasketForCreationDTO basketForCreationDTO)
         {
