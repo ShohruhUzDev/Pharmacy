@@ -26,7 +26,7 @@ namespace Pharmacy.API.Controllers
             => Ok(await categoryService.GetAsync(c => c.Id == id));
 
         [HttpPost]
-        public async ValueTask<IActionResult> CreateAsync(string cantent)
+        public async ValueTask<IActionResult> CreateAsync([FromBody] string cantent)
         {
             var categoryForCreationDTO = new CategoryForCreationDTO
             {

@@ -7,8 +7,6 @@ namespace Pharmacy.Api.Extensions
 {
     public static class ServiceExtensions
     {
-
-
         public static void ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
         {
             var jwtSettings = configuration.GetSection("Jwt");
