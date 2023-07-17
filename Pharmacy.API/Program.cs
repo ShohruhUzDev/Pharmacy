@@ -19,6 +19,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("RedisConn");
+    options.InstanceName = "GamesCatalog_";
+});
+
 builder.Services.AddControllers();
 
 builder.Services.AddCors(option =>

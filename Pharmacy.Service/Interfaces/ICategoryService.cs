@@ -14,7 +14,7 @@ namespace Pharmacy.Service.Interfaces
 
         ValueTask<bool> DeleteAsync(Expression<Func<Category, bool>> expression);
 
-        ValueTask<IEnumerable<Category>> GetAllAsync(
+        ValueTask<IQueryable<Category>> GetAllAsync(
             PaginationParams @params = null,
             Expression<Func<Category, bool>> expression = null);
 
